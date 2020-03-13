@@ -1,5 +1,6 @@
 import sys
 import time
+import matplotlib.pyplot as plt
 
 
 class Progress_bar(object):
@@ -12,7 +13,7 @@ class Progress_bar(object):
         if length - index < batch:
             index = length-1
         percentage = (index+1) / length
-        progress = list('--------------------------')
+        progress = list('..........................')
         progress[(index+1) * 25//length] = '>'
         progress[:(index+1) * 25//length] = '=' * ((index+1) * 25//length + 1)
         progress = ''.join(progress)
@@ -23,5 +24,11 @@ class Progress_bar(object):
                       (end_time - self.start) / percentage * (1 - percentage),
                       (index+1), length, percentage * 100, "%", end_time - self.start), end='')
         self.last_update = time.perf_counter()
+
+
+def show_image(array):
+    plt.figure()
+    plt.imshow(array, cmap='gray')
+    plt.show()
 
 
