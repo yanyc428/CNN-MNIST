@@ -1,6 +1,6 @@
 import struct
 import numpy as np
-import virtualization as v
+import virsualization as v
 
 
 def raw_file_idx3_process(file_path):
@@ -15,7 +15,7 @@ def raw_file_idx3_process(file_path):
         fmt_image = '>' + str(image_size) + 'B'
         images = np.empty((num_images, 1,  num_rows, num_cols))
 
-        print("\nfile decoding:")
+        print("\nfile idx3 decoding:")
         b = v.Progress_bar()
         for i in range(num_images):
             b.bar(i, num_images, "Preprocessed ")
@@ -38,11 +38,11 @@ def raw_file_idx1_process(file_path):
         fmt_label = '>B'
         labels = np.empty(num_labels)
 
-        print("\nfile decoding:")
+        print("\nfile idx1 decoding:")
         b = v.Progress_bar()
         for i in range(num_labels):
             b.bar(i, num_labels, "Preprocessed ")
-            labels[i] = np.array(struct.unpack_from(fmt_label, binary_data, off_set))
+            labels[i] = np.array(struct.unpack_from(fmt_label, binary_data, off_set), dtype=np.int)
             off_set += struct.calcsize(fmt_label)
     return labels
 
