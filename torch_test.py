@@ -20,6 +20,7 @@ test_loader = tud.DataLoader(test_set, batch_size=BATCH_SIZE, shuffle=False)
 total = 0
 bingo = 0
 
+print("\n")
 with torch.no_grad():
     for index, data in enumerate(test_loader):
         inputs, label = data
@@ -27,6 +28,5 @@ with torch.no_grad():
         _, predicted = torch.max(outputs.data,1)
         total += label.size(0)
         bingo += (predicted == label).sum().item()
-        print("\n")
-        print("\tAccuracy: {:.2f}".format(bingo/total), end='')
+        print("\rAccuracy: {:.2f}".format(bingo/total), end='')
 
