@@ -19,7 +19,10 @@ def raw_file_idx3_process(file_path):
         b = v.Progress_bar()
         for i in range(num_images):
             b.bar(i, num_images, "Preprocessed ")
-            images[i][0] = np.array(struct.unpack_from(fmt_image, binary_data, off_set)).reshape((num_rows, num_cols))
+            temp = np.array(struct.unpack_from(fmt_image, binary_data, off_set)).reshape((num_rows, num_cols)).reshape(-1,1)
+            temp = temp / 255
+            temp = temp.reshape(1, 28, 28)
+            images[i][0] = temp
             off_set += struct.calcsize(fmt_image)
     return images
 
