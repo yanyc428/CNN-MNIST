@@ -1,4 +1,53 @@
-## CNN-MNIST
+# CNN-MNIST
+
+## To run
+
+### 1. 若要运行本代码请确保拥有`python3.7`以上的版本
+```
+    python3 --version   
+    python --version
+```
+
+### 2. 若要下载本代码
+* 如果你拥有git
+```
+git clone https://github.com/Bonsior-yyc/CNN-MNIST.git
+```
+* 若不拥有git，点击链接下载
+```
+https://github.com/Bonsior-yyc/CNN-MNIST/archive/master.zip
+```
+
+### 3. 运行前的准备，检查是否具有程序所需要的包
+打开cmd/终端 若cmd需要管理员权限
+```
+cd ./CNN-MNIST  # 你的文件存放地址
+pip3 install -r package_need.txt    
+```
+### 4. 下载数据文件
+```
+cd ./CNN-MNIST  # 你的文件存放地址
+python3 ./initialize.py
+```
+
+### 5. 训练
+```
+python3 torch_train.py # if pytorch
+python3 tf_train.py # if tensorflow
+```
+
+### 6. 剩余事项
+* pytorch 测试
+```
+python3 torch_test.py
+```
+* tenserflow 查看tensorboard
+```
+tensorboard --logdir='./callback'
+```
+
+### 7. 附录
+文件解码事项
 ```
 The data is stored in a very simple file format designed for storing vectors and multidimensional matrices. General info on this format is given at the end of this page, but you don't need to read that to use the data files.
 All the integers in the files are stored in the MSB first (high endian) format used by most non-Intel processors. Users of Intel processors and other low-endian machines must flip the bytes of the header.
