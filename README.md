@@ -26,7 +26,6 @@ pip3 install -r package_need.txt
 ```
 ### 4. 下载数据文件
 ```
-cd ./CNN-MNIST  # 你的文件存放地址
 python3 ./initialize.py
 ```
 
