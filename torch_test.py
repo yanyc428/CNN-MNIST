@@ -3,9 +3,10 @@ from dataPreprocessor import *
 import torch.utils.data as tud
 from torch_data import Torch_data_set
 from torch_train import Net
+import visualization as v
 
-
-net = Net()
+device = "cuda:0" if torch.cuda.is_available()  else "cpu"
+net = Net().to(device)
 net = torch.load("torch_model.pth")
 
 BATCH_SIZE = 10
@@ -34,7 +35,7 @@ with torch.no_grad():
         if index == 117:
             print(predicted.cpu().numpy())
             inputs = [inp.reshape(28, 28) for inp in inputs.cpu()]
-            show_image(inputs, 2, 5)
+            v.show_image(inputs, 2, 5)
         # 打印正确率
         print("\rAccuracy: {:.2f}".format(bingo/total), end='')
 
