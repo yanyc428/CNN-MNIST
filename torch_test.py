@@ -24,9 +24,17 @@ print("\n")
 with torch.no_grad():
     for index, data in enumerate(test_loader):
         inputs, label = data
+        inputs, label = inputs.to(device), label.to(device)
         outputs = net(inputs)
         _, predicted = torch.max(outputs.data,1)
+        # 对total和bingo进行修改
         total += label.size(0)
         bingo += (predicted == label).sum().item()
+        # 显示第128号的图像
+        if index == 117:
+            print(predicted.cpu().numpy())
+            inputs = [inp.reshape(28, 28) for inp in inputs.cpu()]
+            show_image(inputs, 2, 5)
+        # 打印正确率
         print("\rAccuracy: {:.2f}".format(bingo/total), end='')
 
