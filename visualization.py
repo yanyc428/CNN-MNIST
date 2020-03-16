@@ -25,9 +25,20 @@ class Progress_bar(object):
         self.last_update = time.perf_counter()
 
 
-def show_image(array):
-    plt.figure()
-    plt.imshow(array, cmap='gray')
-    plt.show()
+def show_image(array, rows=1, cols=1):
+    # 判断是否有多张图
+    if rows * cols == 1:
+        plt.figure()
+        plt.imshow(array, cmap='gray')
+        plt.show()
+    else:
+        # 打印到一张图
+        for row in range(rows):
+            for col in range(cols):
+                index = row * cols + col
+                plt.subplot(rows, cols, index + 1)
+                plt.imshow(array[index], cmap="gray", interpolation="nearest")
+                plt.axis('off')
+        plt.show()
 
 
