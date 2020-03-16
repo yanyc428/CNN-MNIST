@@ -2,9 +2,10 @@ import tensorflow.keras as keras
 from dataPreprocessor import *
 import tensorflow as tf
 import numpy as np
-import virsualization as v
-BATCH_SIZE = 128
+import visualization as v
 import os
+
+BATCH_SIZE = 128
 
 train_data_file = './data/train/train-images-idx3-ubyte'
 train_label_file = './data/train/train-labels-idx1-ubyte'

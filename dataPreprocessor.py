@@ -1,6 +1,6 @@
 import struct
 import numpy as np
-import virsualization as v
+import visualization as v
 
 
 def raw_file_idx3_process(file_path):

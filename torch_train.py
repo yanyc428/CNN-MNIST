@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.data as tud
 from torch_data import Torch_data_set
-import virsualization as v
+import visualization as v
 from dataPreprocessor import *
 
 NUM_EPOCHS = 2
