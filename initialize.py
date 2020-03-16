@@ -10,6 +10,10 @@ address4 = 'http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz'
 train_dir = './data/train'
 test_dir = './data/test'
 
+if not os.path.exists(train_dir):
+    os.mkdir(train_dir)
+if not os.path.exists(test_dir):
+    os.mkdir(test_dir)
 
 adds = [address1, address2, address3, address4]
 file_names = []
