@@ -69,3 +69,5 @@ history = model.fit(train_set,
                     validation_steps=10000//BATCH_SIZE,
                     validation_data=test_set,
                     callbacks=callback)
+
+model.evaluate(test_set,steps=10000//BATCH_SIZE, verbose=2)
