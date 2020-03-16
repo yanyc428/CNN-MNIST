@@ -19,7 +19,7 @@ if not os.path.exists(test_dir):
 adds = [address1, address2, address3, address4]
 file_names = []
 for add in adds:
-    file_name = add.split('/')[-1].split('.')[0]
+    file_name = add.split('/')[-1]
     if add is address1 or add is address2:
         file_name = os.path.join(train_dir, file_name)
     else:
@@ -28,7 +28,6 @@ for add in adds:
 
 
 def un_gz(file_name):
-    
     # 获取文件的名称，去掉后缀名
     f_name = file_name.replace(".gz", "")
     # 开始解压
