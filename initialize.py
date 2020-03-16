@@ -11,6 +11,7 @@ train_dir = './data/train'
 test_dir = './data/test'
 
 if not os.path.exists(train_dir):
+    os.mkdir('./data')
     os.mkdir(train_dir)
 if not os.path.exists(test_dir):
     os.mkdir(test_dir)
