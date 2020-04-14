@@ -21,8 +21,6 @@ def reader_dataset(data, label, idx3=True, batch_size=128, shuffle_buffer_size=1
         data_array = data_array.reshape(-1, 1).reshape(60000, 28, 28, -1)
     else:
         data_array = data_array.reshape(-1, 1).reshape(10000, 28, 28, -1)
-    print(data_array.dtype)
-    print(label_array.dtype)
     dataset = tf.data.Dataset.from_tensor_slices((data_array, label_array))
     dataset = dataset.repeat()
     dataset = dataset.shuffle(shuffle_buffer_size).batch(batch_size)
@@ -33,14 +31,22 @@ train_set = reader_dataset(train_data_file, train_label_file)
 test_set = reader_dataset(test_data_file, test_label_file, False)
 
 model = keras.Sequential([
-    keras.layers.Conv2D(filters=20, kernel_size=(5, 5), padding="valid", input_shape=(28, 28, 1), activation='relu'),
+    keras.layers.Conv2D(filters=20, kernel_size=(5, 5), padding="VALID", input_shape=(28, 28, 1), strides=1, activation='relu'),
     keras.layers.MaxPool2D((2, 2)),
-    keras.layers.Conv2D(filters=50, kernel_size=(5, 5), padding="valid", activation='relu'),
+    keras.layers.Conv2D(filters=50, kernel_size=(5, 5), padding="VALID", strides=1, activation='relu'),
     keras.layers.MaxPool2D((2, 2)),
     keras.layers.Flatten(),
     keras.layers.Dense(500, activation='relu'),
     keras.layers.Dense(10, activation="softmax"),
 ])
+
+# model = keras.Sequential([
+#     keras.layers.Flatten(input_shape=(28, 28, 1)),
+#     keras.layers.Dense(500, activation='relu'),
+#     keras.layers.Dense(100, activation='relu'),
+#     keras.layers.Dense(50, activation='relu'),
+#     keras.layers.Dense(10, activation="softmax"),
+# ])
 
 model.summary()
 
